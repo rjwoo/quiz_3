@@ -1,0 +1,16 @@
+<h1>All Ideas</h1>
+
+<% @ideas.each do |idea| %>
+  <h3><%= link_to "#{idea.title}", idea_path(idea) %></h3>
+  <p><%= idea.body %></p>
+
+  <% if @like.present? && @like.persisted? %>
+    (<%= idea.likes.count %>)
+    <%= link_to "Un-Like", idea_like_path(idea, @like), method: :delete %>
+  <% else %>
+    (<%= idea.likes.count %>)
+    <%= link_to "Like", idea_likes_path(idea), method: :post %>
+  <% end %>
+
+<hr>
+<% end %>

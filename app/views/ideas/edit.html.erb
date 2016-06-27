@@ -1,0 +1,22 @@
+<h1>Edit Idea</h1>
+
+<div>
+  <%= @idea.errors.full_messages.join(', ') %>
+</div>
+
+<%= form_for @idea do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </div>
+  <div>
+    <%= form_for @idea, url: ideas_path, html: { multipart: true } do |form| %>
+    <%= form.file_field :avatar %>
+  <% end %>
+  </div>
+  <%= f.submit "Save Idea" %>
+<% end %>
